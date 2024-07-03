@@ -1,0 +1,35 @@
+.nav-container {
+  height: 70px;
+}
+
+.nav {
+  height: max-content;
+  vertical-align: middle;
+  padding: 24px 0;
+}
+
+.name {
+  float: left;
+  height: max-content;
+  width: 33%;
+}
+
+.name .name-text {
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 700;
+  color: aliceblue;
+}
+
+.search-bar {
+  display: inline-block;
+  height: max-content;
+  width: 34%;
+}
+
+.log-in {
+  float: right;
+  height: max-content;
+  width: 33%;
+  text-align: right;
+}
