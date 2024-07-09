@@ -1,0 +1,48 @@
+.section {
+  width: 48%;
+  display: inline-block;
+  margin: 0 1%;
+}
+.c {
+  text-align: center;
+}
+
+.c img {
+  width: 48%;
+  height: max-content;
+  margin: -35px 0;
+}
+
+.c .temperature {
+  margin-top: 5px;
+}
+.c .details {
+  height: max-content;
+  width: 80%;
+  margin: auto;
+  margin-top: 35px;
+}
+
+.c .details div {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
+
+.c .details div div {
+  display: block;
+  height: max-content;
+  width: 100%;
+}
+
+.c .details div p {
+  display: inline-block;
+  width: max-content;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+  height: 35px;
+}
+.c .details div span {
+  height: max-content;
+}
