@@ -1,0 +1,13 @@
+.w-container {
+  width: 100%;
+  display: block;
+}
+
+.w-card {
+  width: 80% !important;
+  background-color: aqua;
+  height: max-content;
+  margin: auto;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
