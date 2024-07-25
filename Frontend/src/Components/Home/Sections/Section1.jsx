@@ -3,15 +3,12 @@ import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import WeatherCard from "./WeatherCard";
 import { useAuth } from "../../Security/AuthContext";
-import { useState } from "react";
 
 import "./Section.css";
 
 function Section1({ locationData }) {
   const AuthContext = useAuth();
-  const [isFutureLocationData] = useState(
-    AuthContext.isFutureLocationData || []
-  );
+  const isFutureLocationData = AuthContext.isFutureLocationData;
 
   if (!locationData) {
     return <div>Loading...</div>;

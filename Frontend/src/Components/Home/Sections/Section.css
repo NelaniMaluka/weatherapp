@@ -1,14 +1,19 @@
 .section {
-  width: 48%;
+  width: 47%;
   display: inline-block;
   margin: 0 1%;
+  height: 100%;
 }
 .c {
   text-align: center;
 }
 
+.d {
+  height: 100%;
+}
+
 .c img {
-  width: 48%;
+  width: 45%;
   height: max-content;
   margin: -35px 0;
 }
@@ -45,4 +50,35 @@
 }
 .c .details div span {
   height: max-content;
+}
+
+.d .stats div {
+  width: 85%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.d .stats span {
+  display: block;
+  width: 100%;
+  padding: 7px 0;
+}
+
+.d .stats span span {
+  width: max-content;
+  display: inline;
+  float: right;
+  width: 100px;
+}
+
+@media screen and (max-width: 661px) {
+  .section {
+    display: block;
+    width: 100%;
+    padding-top: 50px;
+  }
+
+  .d .stats span {
+    padding: 5px 0;
+  }
 }
