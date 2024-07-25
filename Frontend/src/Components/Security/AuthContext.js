@@ -7,18 +7,21 @@ export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children }) {
+  const [location, setLocation] = useState("Randfontein");
   const [isLocationData, setLocationData] = useState();
   const [isFutureLocationData, setFutureLocationData] = useState();
 
   useEffect(() => {
-    getWeatherData();
+    getWeatherData(location);
   }, []); // Runs once on mount
 
   async function getWeatherData(location) {
     try {
-      const response = await GetWeatherData("Randfontein");
+      console.log(location);
+      const response = await GetWeatherData(location);
       setLocationData(response.data);
-      getFutureWeatherData(response.data);
+      getFutureWeatherData(location);
+      setLocation(location);
     } catch (e) {
       console.log(e);
     }
@@ -26,7 +29,7 @@ function AuthProvider({ children }) {
 
   async function getFutureWeatherData(location) {
     try {
-      const response = await GetFutureWeatherData("Randfontein");
+      const response = await GetFutureWeatherData(location);
       setFutureLocationData(response.data.list);
     } catch (e) {
       console.log(e);
@@ -40,6 +43,8 @@ function AuthProvider({ children }) {
         getWeatherData,
         isFutureLocationData,
         getFutureWeatherData,
+        location,
+        setLocation,
       }}
     >
       {children}

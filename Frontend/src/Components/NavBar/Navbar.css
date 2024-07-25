@@ -27,9 +27,38 @@
   width: 34%;
 }
 
+.search-bar * {
+  color: black;
+}
+
 .log-in {
   float: right;
   height: max-content;
   width: 33%;
   text-align: right;
+}
+.messageField {
+  padding: 8px;
+  width: 400px;
+  border-radius: 8px;
+}
+.suggestion-item--active {
+  width: 400px;
+}
+
+@media screen and (max-width: 661px) {
+  .nav {
+    height: 30px;
+  }
+
+  .name .name-text {
+    font-size: 20px;
+  }
+
+  .search-bar {
+    display: none;
+  }
+  .log-in {
+    width: 33%;
+  }
 }
