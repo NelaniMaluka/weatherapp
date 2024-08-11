@@ -10,6 +10,7 @@ function AuthProvider({ children }) {
   const [location, setLocation] = useState("Randfontein");
   const [isLocationData, setLocationData] = useState();
   const [isFutureLocationData, setFutureLocationData] = useState();
+  const [isAuthenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
     getWeatherData(location);
@@ -36,6 +37,16 @@ function AuthProvider({ children }) {
     }
   }
 
+  async function login(username, password) {
+    try {
+    } catch (e) {}
+  }
+
+  async function createAccount(username, password) {
+    try {
+    } catch (e) {}
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -45,6 +56,9 @@ function AuthProvider({ children }) {
         getFutureWeatherData,
         location,
         setLocation,
+        isAuthenticated,
+        login,
+        createAccount,
       }}
     >
       {children}
