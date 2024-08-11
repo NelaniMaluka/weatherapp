@@ -4,10 +4,12 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function LocationSearchInput({ onLocationSelect, initialLocation }) {
   const [location, setLocation] = useState(initialLocation);
   const [isValidLocation, setIsValidLocation] = useState(true);
+  const navigate = useNavigate();
 
   const handleSelect = async (value) => {
     try {
@@ -30,6 +32,7 @@ function LocationSearchInput({ onLocationSelect, initialLocation }) {
           console.log("Latitude and Longitude:", lat, lng);
 
           onLocationSelect(formattedLocation);
+          navigate("/");
         } else {
           setIsValidLocation(false);
         }
@@ -58,7 +61,7 @@ function LocationSearchInput({ onLocationSelect, initialLocation }) {
           <div>
             <input
               {...getInputProps({
-                placeholder: "e.g City, Country",
+                placeholder: "Search City, Country",
                 className: "messageField",
               })}
             />
