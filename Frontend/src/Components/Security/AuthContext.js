@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { GetWeatherData } from "../API/Api";
 import { GetFutureWeatherData } from "../API/Api";
+import { CreateAccount } from "../API/Api";
+import { LogIn } from "../API/Api";
+import ErrorAlert from "../Alerts/ErrorAlert";
 
 export const AuthContext = createContext();
 
@@ -11,6 +14,7 @@ function AuthProvider({ children }) {
   const [isLocationData, setLocationData] = useState();
   const [isFutureLocationData, setFutureLocationData] = useState();
   const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isUser, setUser] = useState(null);
 
   useEffect(() => {
     getWeatherData(location);
@@ -18,13 +22,12 @@ function AuthProvider({ children }) {
 
   async function getWeatherData(location) {
     try {
-      console.log(location);
       const response = await GetWeatherData(location);
       setLocationData(response.data);
       getFutureWeatherData(location);
       setLocation(location);
     } catch (e) {
-      console.log(e);
+      ErrorAlert("Couldnt get weather data");
     }
   }
 
@@ -33,18 +36,47 @@ function AuthProvider({ children }) {
       const response = await GetFutureWeatherData(location);
       setFutureLocationData(response.data.list);
     } catch (e) {
-      console.log(e);
+      ErrorAlert("Couldnt get weather data");
     }
   }
 
-  async function login(username, password) {
+  async function login(email, password) {
     try {
-    } catch (e) {}
+      const response = await LogIn(email, password);
+      if (response.status === 200) {
+        setUser(response.data);
+        setAuthenticated(true);
+        return { success: true, response };
+      } else {
+        logout();
+        return { success: false, response };
+      }
+    } catch (e) {
+      logout();
+      return { success: false, response: e.response };
+    }
   }
 
-  async function createAccount(username, password) {
+  function logout() {
+    setAuthenticated(false);
+    setUser(null);
+  }
+
+  async function createAccount(fullName, email, password) {
     try {
-    } catch (e) {}
+      const response = await CreateAccount(fullName, email, password);
+      if (response.status === 200) {
+        setUser(response.data);
+        setAuthenticated(true);
+        return { success: true, response };
+      } else {
+        logout();
+        return { success: false, response };
+      }
+    } catch (e) {
+      logout();
+      return { success: false, response: e.response };
+    }
   }
 
   return (
@@ -59,6 +91,7 @@ function AuthProvider({ children }) {
         isAuthenticated,
         login,
         createAccount,
+        isUser,
       }}
     >
       {children}
