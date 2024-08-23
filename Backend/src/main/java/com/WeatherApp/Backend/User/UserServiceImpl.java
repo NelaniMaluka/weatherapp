@@ -27,42 +27,43 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public ResponseEntity<?> login(UserAccount userAccount){
-		try {
-			UserAccount user = userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
-			
-			if (user != null) {
-				UserResponseDTO userResponseDTO = createUserResponseDTO(user);
-				return ResponseEntity.ok(userResponseDTO);
-			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
-			}
-			
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login");
-		}
+	public ResponseEntity<?> login(UserAccount userAccount) {
+	    try {
+	        // Find the user by email
+	        UserAccount user = userAccountRepository.findByEmail(userAccount.getEmail());
+
+	        // Check if a user was found and the password matches
+	        if (user != null && user.getPassword().equals(userAccount.getPassword())) {
+	            // Create a UserResponseDTO to return
+	            UserResponseDTO userResponseDTO = createUserResponseDTO(user);
+	            return ResponseEntity.ok(userResponseDTO);
+	        } else {
+	            // Return a 401 Unauthorized if the email or password is incorrect
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+	        }
+
+	    } catch (Exception e) {
+	        // Handle any unexpected errors
+	        e.printStackTrace();  // For debugging purposes
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login");
+	    }
 	}
+
 	
 	@Override
 	public ResponseEntity<?> createAccount(UserAccount userAccount) {
-		try {
-			if (userAccountRepository.findByEmail(userAccount.getEmail()) != null) {
-				return ResponseEntity.badRequest().body("User with this email already exists");
-			}
-			
-			if (userAccountRepository.findByEmail(userAccount.getEmail()) == null) {
-				userAccountRepository.save(userAccount);
-				UserResponseDTO userResponseDTO = createUserResponseDTO(userAccount);
-				return ResponseEntity.ok(userResponseDTO);
-			} else {
-				return ResponseEntity.badRequest().body("User with this email already exists");
-			}
-			
-		}catch (Exception e ) {
-			return ResponseEntity.badRequest().body("Failed to create account");
-		}
-		
+	    try {
+	        if (userAccountRepository.findByEmail(userAccount.getEmail()) != null) {
+	            return ResponseEntity.badRequest().body("User with this email already exists");
+	        }
+	        userAccountRepository.save(userAccount);
+	        UserResponseDTO userResponseDTO = createUserResponseDTO(userAccount);
+	        return ResponseEntity.ok(userResponseDTO);
+	    } catch (Exception e) {
+	        return ResponseEntity.badRequest().body("Failed to create account");
+	    }
 	}
+
 	
 	@Override
 	public ResponseEntity<?> updateUserFields(Integer userId, Map<String, String> updates){

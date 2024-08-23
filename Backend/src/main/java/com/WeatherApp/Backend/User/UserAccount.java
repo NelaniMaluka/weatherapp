@@ -4,13 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
 
 @Entity
-@Table(name="user")
+//@Table(name="user")
 public class UserAccount {
 	
 	@Id
@@ -31,14 +30,18 @@ public class UserAccount {
 	
 	public String secondaryLocation;
 
+    // Default constructor
+    public UserAccount() {
+    }
+	
+    // Parameterized constructor
 	public UserAccount(Integer userId, String fullName,
 			@Valid @Email(message = "Please provide a valid email") String email,
 			@Valid @Size(min = 8, max = 50, message = "Password must be at least 8 characters long") String password,
 			String primaryLocation, String secondaryLocation) {
-		super();
 		this.userId = userId;
 		this.fullName = fullName;
-		email = email;
+		this.email = email;
 		this.password = password;
 		this.primaryLocation = primaryLocation;
 		this.secondaryLocation = secondaryLocation;
@@ -65,7 +68,7 @@ public class UserAccount {
 	}
 
 	public void setEmail(String email) {
-		email = email;
+		this.email = email;
 	}
 
 	public String getPassword() {
