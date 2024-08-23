@@ -9,13 +9,16 @@ import { useAuth } from "../Security/AuthContext";
 export default function BasicMenu() {
   const authContext = useAuth();
   const isAuthenticated = authContext.isAuthenticated;
+  const userName = authContext.isUser;
 
-  function handleLogout() {}
+  function handleLogout() {
+    authContext.logout();
+  }
 
   return (
     <Dropdown>
       <MenuButton style={{ width: "130px", color: "white" }}>
-        Dashboard
+        {(isAuthenticated && userName.fullName) || "Dashboard"}
       </MenuButton>
       <Menu style={{ width: "120px", height: "max-content" }}>
         <MenuItem style={{ height: "max-content" }}>
