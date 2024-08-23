@@ -18,6 +18,10 @@
   display: block;
 }
 
+.form input {
+  color: black; /* or any visible color */
+}
+
 .form input[type="password"] {
   color: black; /* or any visible color */
 }
