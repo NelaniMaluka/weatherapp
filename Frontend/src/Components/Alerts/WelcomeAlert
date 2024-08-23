@@ -1,0 +1,25 @@
+// ../Alerts/WelcomeAlert.js
+import Swal from "sweetalert2";
+import { useAuth } from "../Security/AuthContext";
+
+export function WelcomeAlert() {
+  const { fullName } = useAuth(); // Accessing fullName directly
+
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: `Welcome Back, ${fullName}`,
+    showConfirmButton: false,
+    timer: 1500,
+    customClass: {
+      container: "custom-swal-container", // Add a custom class
+    },
+    didOpen: () => {
+      // Adjust z-index if needed
+      const container = document.querySelector(".custom-swal-container");
+      if (container) {
+        container.style.zIndex = "9999"; // Ensure it's on top
+      }
+    },
+  });
+}

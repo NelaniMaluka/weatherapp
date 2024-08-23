@@ -1,6 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Security/AuthContext";
+import WelcomeAlert from "../Alerts/WelcomeAlert";
+import ErrorAlert from "../Alerts/ErrorAlert";
 
 import "./Form.css";
 
@@ -10,6 +13,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const useContext = useAuth();
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
@@ -47,12 +52,15 @@ function Login() {
       }
 
       const result = await useContext.login(email, password);
-
       if (result.success) {
+        WelcomeAlert("useContext.isUser.fullName");
         navigate("/");
       } else {
+        ErrorAlert("Invalid Credentials");
       }
-    } catch (e) {}
+    } catch (e) {
+      ErrorAlert("Internal Server Error");
+    }
   }
 
   return (

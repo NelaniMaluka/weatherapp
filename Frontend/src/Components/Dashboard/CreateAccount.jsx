@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Security/AuthContext";
+import ErrorAlert from "../Alerts/ErrorAlert";
 
 function CreateAccount() {
   const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate("");
   const useContext = useAuth();
+
+  function handleFullNameChange(event) {
+    setFullName(event.target.value);
+  }
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
@@ -45,13 +51,16 @@ function CreateAccount() {
         );
       }
 
-      const result = await useContext.createAccount(email, password);
+      const result = await useContext.createAccount(fullName, email, password);
 
       if (result.success) {
         navigate("/");
       } else {
+        ErrorAlert("Invalid Credentials");
       }
-    } catch (e) {}
+    } catch (e) {
+      ErrorAlert("Internal Server Error");
+    }
   }
 
   return (
@@ -61,8 +70,16 @@ function CreateAccount() {
       </div>
       <div>
         <input
+          placeholder="Full Name"
+          type="text" // Change to "text"
+          name="fullname"
+          value={fullName} // Use a state variable for full name
+          autoComplete="name"
+          onChange={handleFullNameChange}
+        />
+        <input
           placeholder="Email"
-          type="email"
+          type="text"
           name="email"
           value={email}
           autoComplete="email"
