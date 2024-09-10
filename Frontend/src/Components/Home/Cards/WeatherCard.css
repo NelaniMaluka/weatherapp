@@ -1,0 +1,41 @@
+.w-container {
+  width: 100%;
+  display: block;
+}
+
+.w-card {
+  width: 70% !important;
+  background-color: rgb(113, 162, 180);
+  height: max-content;
+  margin: auto;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+.w-card .w-logo {
+  width: 60%;
+  margin-top: -20px;
+}
+
+.w-card .day-of-week {
+  margin-top: 20px;
+}
+
+.w-card span {
+  display: block;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 661px) {
+  .w-card .w-logo {
+    width: 85%;
+  }
+  .w-card {
+    width: 90% !important;
+  }
+
+  .w-card .day-of-week {
+    font-size: 15px;
+  }
+}
