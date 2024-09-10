@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.WeatherApp.Backend.Email.EmailService;
 import com.WeatherApp.Backend.Newsletter.NewsletterRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,12 +19,14 @@ public class UserServiceImpl implements UserService{
 	
 	private final UserAccountRepository userAccountRepository;
 	private final NewsletterRepository newsletterRepository;
+	private EmailService emailService;
 	
 	@Autowired
-	public UserServiceImpl(UserAccountRepository userAccountRepository, NewsletterRepository newsletterRepository) {
+	public UserServiceImpl(UserAccountRepository userAccountRepository, NewsletterRepository newsletterRepository, EmailService emailService) {
 		super();
 		this.userAccountRepository = userAccountRepository;
 		this.newsletterRepository = newsletterRepository;
+		this.emailService = emailService;
 	}
 	
 	@Override
@@ -45,7 +48,7 @@ public class UserServiceImpl implements UserService{
 	    } catch (Exception e) {
 	        // Handle any unexpected errors
 	        e.printStackTrace();  // For debugging purposes
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login");
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login" + e);
 	    }
 	}
 
@@ -105,31 +108,22 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
-    @Override
-    public ResponseEntity<String> forgotPassword(String Email) {
-        try {
-            //passwordResetService.createPasswordResetRequest(userAccount.getEmail());
-            return ResponseEntity.ok("Password reset email sent successfully");
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
-        }
-    }
+	@Override
+	public ResponseEntity<String> forgotPassword(String Email) {
+	    try {
+	        UserAccount user = userAccountRepository.findByEmail(Email);
 
-    @Override
-    public ResponseEntity<String> resetPassword(String Email) {
-        try {
-            //String email = requestBody.get("email");
-            //String newPassword = requestBody.get("newPassword");
-            //passwordResetService.resetPassword(email, newPassword);
-            return ResponseEntity.ok("Password reset successfully");
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
-        }
-    }
+	        if (user != null) {
+	            emailService.sendSimpleEmail(Email, "Reset Password", user.getPassword());
+	            return ResponseEntity.ok("Email successfully sent");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found: " + Email);
+	        }
+
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred" + e);
+	    }
+	}
 
 	private UserResponseDTO createUserResponseDTO(UserAccount user) {
 		return new UserResponseDTO(

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.WeatherApp.Backend.Newsletter.Newsletter;
+
 import jakarta.validation.Valid;
 
 @RestController
@@ -43,13 +45,8 @@ public class UserController {
 	}
 	
     @PostMapping("/api/user/forgot-password")
-    public ResponseEntity<String> forgotPassword(@RequestBody @NonNull String email) {
-        return userService.forgotPassword(email);
-    }
-
-    @PostMapping("/api/user/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody @NonNull String email) {
-        return userService.resetPassword(email);
+    public ResponseEntity<String> forgotPassword(@RequestBody @NonNull Newsletter newsletter) {
+        return userService.forgotPassword(newsletter.getEmail());
     }
 	
 }

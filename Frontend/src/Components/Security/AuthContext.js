@@ -3,6 +3,7 @@ import { GetWeatherData } from "../API/Api";
 import { GetFutureWeatherData } from "../API/Api";
 import { CreateAccount } from "../API/Api";
 import { LogIn } from "../API/Api";
+import { ForgotPassword } from "../API/Api";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
 export const AuthContext = createContext();
@@ -15,9 +16,11 @@ function AuthProvider({ children }) {
   const [isFutureLocationData, setFutureLocationData] = useState();
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isUser, setUser] = useState(null);
+  const [isForecast, setForecast] = useState();
 
   useEffect(() => {
     getWeatherData(location);
+    //getForecast();
   }, []); // Runs once on mount
 
   async function getWeatherData(location) {
@@ -79,6 +82,43 @@ function AuthProvider({ children }) {
     }
   }
 
+  async function forgotPassword(email) {
+    try {
+      const response = await ForgotPassword(email);
+      if (response.status === 200) {
+        return { success: true };
+      } else {
+        return { success: false };
+      }
+    } catch (e) {
+      return { success: false + e.message };
+    }
+  }
+
+  async function getForecast() {
+    const forecast = [];
+
+    const popularCities = [
+      "Pretoria, South Africa",
+      "Johannesburg, South Africa",
+      "Cape Town, South Africa",
+      "Durban, South Africa",
+      "Bloemfontein, South Africa",
+      "Polokwane, South Africa",
+      "Upington, South Africa",
+      "Port Elizabeth, South Africa",
+      "East London, South Africa",
+    ];
+    console.log("yoyo" + getFutureWeatherData(popularCities[1]));
+
+    for (const city in popularCities) {
+      const response = await getFutureWeatherData(city);
+      console.log(response);
+      forecast.push(response);
+    }
+    setForecast(forecast);
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -92,6 +132,8 @@ function AuthProvider({ children }) {
         login,
         createAccount,
         isUser,
+        isForecast,
+        forgotPassword,
       }}
     >
       {children}
