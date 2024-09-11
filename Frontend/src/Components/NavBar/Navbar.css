@@ -1,5 +1,6 @@
 .nav-container {
-  height: 70px;
+  height: max-content;
+  display: block;
 }
 
 .nav {
@@ -27,7 +28,14 @@
   width: 34%;
 }
 
+.search-bar-2 {
+  display: none;
+}
+
 .search-bar * {
+  color: black;
+}
+.search-bar-2 * {
   color: black;
 }
 
@@ -46,13 +54,25 @@
   width: 400px;
 }
 
-@media screen and (max-width: 661px) {
+@media screen and (max-width: 861px) {
   .nav {
-    height: 30px;
+    height: max-content;
+  }
+  .search-bar-2 {
+    display: inline-block;
+    height: max-content;
+    width: max-content;
+    padding-top: 25px;
+    background-color: aqua;
+    margin: auto;
+  }
+
+  .name {
+    width: 50%;
   }
 
   .name .name-text {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .search-bar {

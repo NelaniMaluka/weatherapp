@@ -28,6 +28,13 @@ function Navbar() {
           <BasicMenu />
         </div>
       </div>
+      <div className="search-bar-2">
+        {" "}
+        <LocationSearchInput
+          initialLocation={AuthContext.location}
+          onLocationSelect={(location) => AuthContext.getWeatherData(location)}
+        />
+      </div>
     </div>
   );
 }
