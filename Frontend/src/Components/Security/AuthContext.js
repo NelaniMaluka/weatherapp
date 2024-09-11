@@ -16,11 +16,11 @@ function AuthProvider({ children }) {
   const [isFutureLocationData, setFutureLocationData] = useState();
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isUser, setUser] = useState(null);
-  const [isForecast, setForecast] = useState();
+  const [isPopularCitiesForecast, setPopularCitiesForecast] = useState();
 
   useEffect(() => {
     getWeatherData(location);
-    //getForecast();
+    getPopularCitiesForecast();
   }, []); // Runs once on mount
 
   async function getWeatherData(location) {
@@ -95,7 +95,7 @@ function AuthProvider({ children }) {
     }
   }
 
-  async function getForecast() {
+  async function getPopularCitiesForecast() {
     const forecast = [];
 
     const popularCities = [
@@ -109,14 +109,13 @@ function AuthProvider({ children }) {
       "Port Elizabeth, South Africa",
       "East London, South Africa",
     ];
-    console.log("yoyo" + getFutureWeatherData(popularCities[1]));
 
-    for (const city in popularCities) {
-      const response = await getFutureWeatherData(city);
+    for (const city of popularCities) {
+      const response = await GetFutureWeatherData(city);
       console.log(response);
       forecast.push(response);
     }
-    setForecast(forecast);
+    setPopularCitiesForecast(forecast);
   }
 
   return (
@@ -132,7 +131,7 @@ function AuthProvider({ children }) {
         login,
         createAccount,
         isUser,
-        isForecast,
+        isPopularCitiesForecast,
         forgotPassword,
       }}
     >

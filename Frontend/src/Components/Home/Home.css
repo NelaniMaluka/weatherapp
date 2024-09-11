@@ -1,4 +1,16 @@
 .home-page {
   margin-top: 20px;
   padding: 0 0 20px 0;
+  width: 100%;
+}
+
+.home-page div .sections-container {
+  max-width: 1250px;
+  margin: auto;
+  width: 100%;
+}
+.info-container {
+  max-width: 1250px;
+  margin: auto;
+  width: 100%;
 }

@@ -1,17 +1,29 @@
 import { useAuth } from "../Security/AuthContext";
-import Section1 from "./Sections/Section1";
-import Section2 from "./Sections/Section2";
+import WeatherStats from "./Sections/WeatherStats";
+import WeatherData from "./Sections/WeatherData";
+import PopularCitiesForecast from "./Sections/PopularCitiesForecast";
 import "./Home.css";
 
 function Home() {
-  const AuthContext = useAuth();
-  const isLocationData = AuthContext.isLocationData;
+  const useContext = useAuth();
+  const isLocationData = useContext.isLocationData;
+  const isPopularCitiesForecast = useContext.isPopularCitiesForecast;
+  console.log(isPopularCitiesForecast);
+
+  if (!isLocationData || !isPopularCitiesForecast) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="home-page">
       <div className="container">
-        <Section1 locationData={isLocationData} />
-        <Section2 locationData={isLocationData} />
+        <div className="sections-container">
+          <WeatherStats locationData={isLocationData} />
+          <WeatherData locationData={isLocationData} />
+        </div>
+        <div className="info-container">
+          <PopularCitiesForecast popularCitiesData={isPopularCitiesForecast} />
+        </div>
       </div>
     </div>
   );

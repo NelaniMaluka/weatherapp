@@ -1,5 +1,5 @@
 .section {
-  width: 47%;
+  width: 48%;
   display: inline-block;
   margin: 0 1%;
   height: 100%;
@@ -71,14 +71,50 @@
   width: 100px;
 }
 
-@media screen and (max-width: 661px) {
+.table-container {
+  width: 50%;
+}
+
+.table-container img {
+  width: 40px;
+  display: inline-block;
+}
+
+.table-container th {
+  width: 30px;
+  color: black;
+  background-color: white;
+}
+
+.table-container td {
+  width: 30px;
+  color: black;
+  background-color: white;
+}
+
+.table-container td span {
+  color: black;
+  display: inline-block;
+  width: max-content;
+  height: max-content;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 861px) {
   .section {
     display: block;
     width: 100%;
+    max-width: 600px;
+    margin: auto;
     padding-top: 50px;
   }
 
   .d .stats span {
     padding: 5px 0;
+  }
+
+  .table-container {
+    width: 90%;
+    margin: auto;
   }
 }
