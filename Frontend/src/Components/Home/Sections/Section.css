@@ -3,13 +3,26 @@
   display: inline-block;
   margin: 0 1%;
   height: 100%;
+  margin-bottom: 50px;
+  margin-top: 20px;
 }
+
 .c {
   text-align: center;
 }
 
 .d {
   height: 100%;
+}
+
+.c h3 {
+  text-align: left;
+  margin-left: 15%;
+}
+
+.c h4 {
+  text-align: left;
+  margin-left: 15%;
 }
 
 .c img {
@@ -21,6 +34,7 @@
 .c .temperature {
   margin-top: 5px;
 }
+
 .c .details {
   height: max-content;
   width: 80%;
@@ -48,6 +62,7 @@
   font-size: 15px;
   height: 35px;
 }
+
 .c .details div span {
   height: max-content;
 }
@@ -72,34 +87,58 @@
 }
 
 .table-container {
-  width: 50%;
+  width: 60%;
 }
 
 .table-container img {
-  width: 40px;
-  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px; /* Add spacing between image and text */
 }
 
 .table-container th {
-  width: 30px;
   color: black;
   background-color: white;
+  text-align: center;
 }
 
 .table-container td {
-  width: 30px;
   color: black;
   background-color: white;
+  padding: 10px;
+}
+
+.table-container td div {
+  display: flex;
+  align-items: center; /* Aligns content vertically */
+  justify-content: space-around; /* Distribute space between elements */
 }
 
 .table-container td span {
-  color: black;
   display: inline-block;
-  width: max-content;
   height: max-content;
-  vertical-align: middle;
+  text-align: center;
+  vertical-align: middle; /* Ensures text is aligned vertically */
+  color: black;
+  font-size: 14px;
 }
 
+table {
+  margin: 0 5% 0 15%;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  width: max-content;
+  width: 80px;
+}
+
+/* Media query for responsiveness */
 @media screen and (max-width: 861px) {
   .section {
     display: block;
@@ -109,6 +148,10 @@
     padding-top: 50px;
   }
 
+  .c h4 {
+    margin-bottom: 30px;
+  }
+
   .d .stats span {
     padding: 5px 0;
   }
@@ -116,5 +159,25 @@
   .table-container {
     width: 90%;
     margin: auto;
+  }
+  table {
+    font-size: 13px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .table-container td div {
+    display: block;
+    align-items: left; /* Aligns content vertically */
+    justify-content: space-around; /* Distribute space between elements */
+  }
+
+  th,
+  td {
+    padding: 0px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    width: max-content;
+    width: 70px;
   }
 }

@@ -1,6 +1,7 @@
 .nav-container {
-  height: max-content;
+  height: 80px;
   display: block;
+  background-color: rgb(37, 37, 37);
 }
 
 .nav {
@@ -17,7 +18,7 @@
 
 .name .name-text {
   text-decoration: none;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
   color: aliceblue;
 }
@@ -25,7 +26,7 @@
 .search-bar {
   display: inline-block;
   height: max-content;
-  width: 34%;
+  width: 325px;
 }
 
 .search-bar-2 {
@@ -45,26 +46,112 @@
   width: 33%;
   text-align: right;
 }
-.messageField {
-  padding: 8px;
-  width: 400px;
-  border-radius: 8px;
+
+/* Container for the input field and icon */
+.input-with-icon {
+  position: relative;
+  width: 100%;
 }
+
+/* Styling for the input field */
+.messageField {
+  width: 100%;
+  padding: 10px 10px 10px 35px; /* Add left padding to make space for the icon */
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-container {
+  width: 100%;
+}
+
+/* Styling for the search icon */
+
+.search-icon {
+  position: absolute;
+  left: 10px; /* Position the icon inside the input field */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the icon */
+  color: #888;
+}
+
+.autocomplete-dropdown-container {
+  background-color: white;
+  width: 305px;
+  border: 1px solid #ccc;
+  position: absolute;
+  z-index: 1000;
+  height: max-content;
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #fafafa;
+}
+
 .suggestion-item--active {
-  width: 400px;
+  background-color: #e0e0e0;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-item {
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Vertically align the icon and text in the middle */
+  padding: 8px;
+  cursor: pointer;
+  background-color: #fafafa;
+}
+
+.current-location {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item span {
+  margin-left: 8px; /* Add some space between the icon and the text */
+}
+
+.suggestion-item:hover {
+  background-color: #e0e0e0; /* Add hover effect */
+}
+
+.loading {
+  color: white;
 }
 
 @media screen and (max-width: 861px) {
+  .nav-container {
+    height: max-content;
+    padding-bottom: 10px;
+  }
+
   .nav {
     height: max-content;
   }
   .search-bar-2 {
     display: inline-block;
     height: max-content;
-    width: max-content;
-    padding-top: 25px;
-    background-color: aqua;
+    width: 100%;
+    padding-top: 15px;
     margin: auto;
+  }
+
+  .autocomplete-dropdown-container {
+    width: 230px;
+  }
+
+  .input-container {
+    width: 250px;
+    float: right;
+  }
+
+  .messageField {
+    width: 100%;
+    height: 30px;
   }
 
   .name {
