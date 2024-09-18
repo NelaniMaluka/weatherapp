@@ -5,6 +5,7 @@ import { CreateAccount } from "../API/Api";
 import { LogIn } from "../API/Api";
 import { ForgotPassword } from "../API/Api";
 import ErrorAlert from "../Alerts/ErrorAlert";
+import { GetWeatherNews } from "../API/Api";
 
 export const AuthContext = createContext();
 
@@ -17,10 +18,12 @@ function AuthProvider({ children }) {
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isUser, setUser] = useState(null);
   const [isPopularCitiesForecast, setPopularCitiesForecast] = useState();
+  const [isWeatherNews, setWeatherNews] = useState();
 
   useEffect(() => {
     getWeatherData(location);
     getPopularCitiesForecast();
+    getWeatherNews();
   }, []); // Runs once on mount
 
   async function getWeatherData(location) {
@@ -38,6 +41,16 @@ function AuthProvider({ children }) {
     try {
       const response = await GetFutureWeatherData(location);
       setFutureLocationData(response.data.list);
+    } catch (e) {
+      ErrorAlert("Couldnt get weather data");
+    }
+  }
+
+  async function getWeatherNews() {
+    try {
+      const response = await GetWeatherNews();
+      setWeatherNews(response.data.articles);
+      console.log(response.data.articles);
     } catch (e) {
       ErrorAlert("Couldnt get weather data");
     }
@@ -112,7 +125,6 @@ function AuthProvider({ children }) {
 
     for (const city of popularCities) {
       const response = await GetFutureWeatherData(city);
-      console.log(response);
       forecast.push(response);
     }
     setPopularCitiesForecast(forecast);
@@ -133,6 +145,7 @@ function AuthProvider({ children }) {
         isUser,
         isPopularCitiesForecast,
         forgotPassword,
+        isWeatherNews,
       }}
     >
       {children}
