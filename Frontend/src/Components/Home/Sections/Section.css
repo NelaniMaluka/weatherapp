@@ -87,7 +87,9 @@
 }
 
 .table-container {
-  width: 60%;
+  width: 90%;
+  margin: auto;
+  vertical-align: top;
 }
 
 .table-container img {
@@ -100,6 +102,7 @@
   color: black;
   background-color: white;
   text-align: center;
+  padding: 10px;
 }
 
 .table-container td {
@@ -138,6 +141,12 @@ td {
   width: 80px;
 }
 
+.vid-container {
+  margin: 50px 5% 0 18%;
+  width: 72%;
+  height: 258px;
+}
+
 /* Media query for responsiveness */
 @media screen and (max-width: 861px) {
   .section {
@@ -159,6 +168,8 @@ td {
   .table-container {
     width: 90%;
     margin: auto;
+    display: block;
+    padding: 70px 0;
   }
   table {
     font-size: 13px;
@@ -179,5 +190,13 @@ td {
     border-bottom: 1px solid #ddd;
     width: max-content;
     width: 70px;
+  }
+
+  .vid-container {
+    width: 90%;
+    margin: auto;
+    height: 180px;
+    margin-top: -30px;
+    margin-bottom: 15px;
   }
 }

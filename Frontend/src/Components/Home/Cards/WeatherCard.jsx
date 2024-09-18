@@ -1,4 +1,4 @@
-import "./WeatherCard.css";
+import "./Card.css";
 import { IncrementDateAndGetDay } from "../../../Utils/IncrementDateAndGetDate";
 
 function WeatherCard({ futureLocationData, day }) {
