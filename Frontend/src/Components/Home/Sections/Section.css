@@ -1,10 +1,12 @@
 .section {
-  width: 48%;
+  width: 100%;
   display: inline-block;
   margin: 0 1%;
   height: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   margin-top: 20px;
+  color: black;
+  max-height: 444px;
 }
 
 .c {
@@ -13,16 +15,17 @@
 
 .d {
   height: 100%;
+  text-align: left;
 }
 
 .c h3 {
   text-align: left;
-  margin-left: 15%;
+  margin-left: 7%;
 }
 
 .c h4 {
   text-align: left;
-  margin-left: 15%;
+  margin-left: 7%;
 }
 
 .c img {
@@ -37,7 +40,7 @@
 
 .c .details {
   height: max-content;
-  width: 80%;
+  width: 100%;
   margin: auto;
   margin-top: 35px;
 }
@@ -67,8 +70,16 @@
   height: max-content;
 }
 
+.d .stats {
+  vertical-align: top !important;
+}
+
+.d .stats div:first-child {
+  margin-top: 0;
+}
+
 .d .stats div {
-  width: 85%;
+  width: 97%;
   margin: auto;
   margin-top: 20px;
 }
@@ -127,8 +138,7 @@
 }
 
 table {
-  margin: 0 5% 0 15%;
-  width: 80%;
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -142,8 +152,8 @@ td {
 }
 
 .vid-container {
-  margin: 50px 5% 0 18%;
-  width: 72%;
+  margin: 50px 5% 0 5%;
+  width: 90%;
   height: 258px;
 }
 
@@ -154,27 +164,37 @@ td {
     width: 100%;
     max-width: 600px;
     margin: auto;
-    padding-top: 50px;
+    padding-top: 35px;
+  }
+
+  .c h3 {
+    text-align: left;
+    margin-left: 3%;
   }
 
   .c h4 {
     margin-bottom: 30px;
+    margin-left: 3%;
   }
 
   .d .stats span {
     padding: 5px 0;
   }
 
+  .d .stats div {
+    width: 100%;
+  }
+
   .table-container {
-    width: 90%;
+    width: 100%;
     margin: auto;
     display: block;
-    padding: 70px 0;
+    padding: 20px 0;
   }
   table {
     font-size: 13px;
     margin: auto;
-    width: 100%;
+    width: 95%;
   }
 
   .table-container td div {
@@ -193,10 +213,10 @@ td {
   }
 
   .vid-container {
-    width: 90%;
+    width: 100%;
     margin: auto;
-    height: 180px;
-    margin-top: -30px;
+    height: 190px;
+    margin-top: 20px;
     margin-bottom: 15px;
   }
 }

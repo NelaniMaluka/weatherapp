@@ -22,5 +22,13 @@ code {
 .container {
   width: 95%;
   margin: auto;
-  max-width: 1200px;
+  max-width: 970px;
+}
+
+@media screen and (max-width: 861px) {
+  .container {
+    width: 90%;
+    margin: auto;
+    max-width: 1000px;
+  }
 }
