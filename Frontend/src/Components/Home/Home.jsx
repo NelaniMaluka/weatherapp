@@ -3,7 +3,7 @@ import WeatherStats from "./Sections/WeatherStats";
 import WeatherData from "./Sections/WeatherData";
 import PopularCitiesForecast from "./Sections/PopularCitiesForecast";
 import "./Home.css";
-import NewsCard from "./Cards/NewsCard";
+import NewsCard from "../News/Cards/NewsCard";
 import VideoSection from "./Sections/VideoSection";
 
 import * as React from "react";
@@ -37,8 +37,20 @@ function Home() {
     <div className="home-page">
       <div className="container">
         <div className="sections-container">
-          <WeatherStats locationData={isLocationData} />
-          <WeatherData locationData={isLocationData} />
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <Item>
+                  <WeatherStats locationData={isLocationData} />
+                </Item>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Item>
+                  <WeatherData locationData={isLocationData} />
+                </Item>
+              </Grid>
+            </Grid>
+          </Box>
         </div>
         <div className="info-container">
           <Box sx={{ flexGrow: 1 }}>
