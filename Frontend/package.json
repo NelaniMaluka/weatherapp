@@ -20,7 +20,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
-    "sweetalert2": "^11.14.0",
+    "sweetalert2": "^11.14.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
