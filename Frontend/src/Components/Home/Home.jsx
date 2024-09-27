@@ -37,8 +37,8 @@ function Home() {
     <div className="home-page">
       <div className="container">
         <div className="sections-container">
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+          <Box sx={{ flexGrow: 0 }}>
+            <Grid container spacing={0}>
               <Grid item xs={12} md={6}>
                 <Item>
                   <WeatherStats locationData={isLocationData} />
@@ -53,8 +53,8 @@ function Home() {
           </Box>
         </div>
         <div className="info-container">
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+          <Box sx={{ flexGrow: 0 }}>
+            <Grid container spacing={0}>
               <Grid item xs={12} md={8}>
                 <Item>
                   <PopularCitiesForecast
