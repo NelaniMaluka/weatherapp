@@ -1,0 +1,28 @@
+.article {
+  text-align: left;
+  background-color: white;
+  width: 100%;
+}
+
+.article * {
+  color: black;
+}
+
+.article .title {
+  font-size: 27px;
+  padding: 10px 0;
+}
+.article .description {
+  font-size: 19px;
+  padding: 10px 0;
+}
+
+.article .date {
+  font-size: 14px;
+  color: rgb(109, 109, 109);
+  margin: 10px 0;
+}
+.article .vid {
+  margin: 20px 0;
+  height: 340px;
+}
